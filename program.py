@@ -1,10 +1,11 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
+from art import logo
+print(logo)
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+shift = int(input("Type the shift number:\n"))    
+shift = shift % 26
 
-#TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 def encrypt(text, shift):
     word = ""
     for letter in text:
@@ -15,7 +16,7 @@ def encrypt(text, shift):
         else:
             word += alphabet[position + shift]
     print("The encoded text is " + word)
-  
+
 def decrypt(text, shift):
     word = ""
     for letter in text:
@@ -27,6 +28,7 @@ def decrypt(text, shift):
             word += alphabet[position - shift]
 
     print("The decoded text is " + word)
+
 
 if direction == 'encode':
     encrypt(text, shift)
