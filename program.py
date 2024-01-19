@@ -6,16 +6,29 @@ shift = int(input("Type the shift number:\n"))
 
 #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 def encrypt(text, shift):
-    word = list(text)
-    for i in range(0, len(word)):
-        letter = alphabet.index(word[i])
-        if letter + shift >= len(alphabet):
-            index = (letter + shift) - len(alphabet)
-            word[i] = alphabet[index]
+    word = ""
+    for letter in text:
+        position = alphabet.index(letter)
+        if position + shift >= len(alphabet):
+            position = (position + shift) - len(alphabet)
+            word += alphabet[position]
         else:
-            word[i] = alphabet[letter + shift]
-    
-    print(f"The encoded text is {''.join(word)}")
+            word += alphabet[position + shift]
+    print("The encoded text is " + word)
   
-#TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message. 
-encrypt(text, shift)
+def decrypt(text, shift):
+    word = ""
+    for letter in text:
+        position = alphabet.index(letter)
+        if position - shift < 0:
+            position = (position - shift) + len(alphabet)
+            word += alphabet[position]
+        else:
+            word += alphabet[position - shift]
+
+    print("The decoded text is " + word)
+
+if direction == 'encode':
+    encrypt(text, shift)
+else:
+    decrypt(text, shift)
